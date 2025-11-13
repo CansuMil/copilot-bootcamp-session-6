@@ -5,6 +5,16 @@
 **Status**: Draft  
 **Input**: User description: "Support for Overdue Todo Items - Users need a clear, visual way to identify which todos have not been completed by their due date."
 
+## Clarifications
+
+### Session 2025-11-13
+
+- Q: What specific visual indicators should be used for overdue items (color, icon, background, or combination)? → A: Icon only (no color change)
+- Q: Which icon symbol should be used for overdue todos? → A: Clock/hourglass icon
+- Q: Should overdue calculations use client-side or server-side time? → A: Client-side (browser's local time)
+- Q: Should current (due today) and future todos have distinct icons beyond just overdue items? → A: Add icon for "due today" items (e.g., calendar icon)
+- Q: Where should the icon be positioned within the TodoCard component? → A: Left side before title
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Visual Identification of Overdue Items (Priority: P1)
@@ -50,9 +60,9 @@ Users can easily distinguish between overdue todos, current todos (due today), a
 
 **Acceptance Scenarios**:
 
-1. **Given** todos with various due dates (past, today, future, no date), **When** the user views the list, **Then** each category has visually distinct styling that communicates urgency
+1. **Given** todos with various due dates (past, today, future, no date), **When** the user views the list, **Then** overdue items show a clock/hourglass icon, due today items show a calendar icon, and future/no date items show no icon
 2. **Given** a user scanning the todo list quickly, **When** looking for overdue items, **Then** the visual indicators are sufficiently distinct to identify overdue items within 2 seconds
-3. **Given** todos without due dates, **When** the user views the list, **Then** these items do NOT display any date-related visual indicators
+3. **Given** todos without due dates or with future due dates, **When** the user views the list, **Then** these items do NOT display any date-related visual indicators
 
 ---
 
@@ -68,16 +78,19 @@ Users can easily distinguish between overdue todos, current todos (due today), a
 
 ### Functional Requirements
 
-- **FR-001**: System MUST display visual indicators (such as color, icons, or styling) for todos that are incomplete and have a due date before the current date
+- **FR-001**: System MUST display a clock or hourglass icon indicator (without color changes) for todos that are incomplete and have a due date before the current date
 - **FR-002**: System MUST NOT display overdue indicators for todos that have been marked as completed, regardless of their due date
-- **FR-003**: System MUST calculate overdue status based on comparing the todo's due date with the current date (server time or client time based on system architecture)
+- **FR-003**: System MUST calculate overdue status based on comparing the todo's due date with the current date using client-side browser time
 - **FR-004**: System MUST consider a todo overdue only if its due date is strictly before the current date (today's date means not overdue)
 - **FR-005**: System MUST NOT display overdue indicators for todos that do not have a due date assigned
 - **FR-006**: System MUST recalculate and update overdue status whenever the todo list is viewed or refreshed
 - **FR-007**: System MUST immediately remove overdue indicators when a user marks an overdue todo as complete
 - **FR-008**: System MUST immediately remove overdue indicators when a user changes a todo's due date from past to present or future
 - **FR-009**: System MUST immediately display overdue indicators when a user changes a todo's due date from future or present to past (and the todo is incomplete)
-- **FR-010**: Visual indicators for overdue items MUST be clearly distinguishable from normal todo styling and accessible to users with color vision deficiencies
+- **FR-010**: Icon indicators for overdue items MUST be clearly distinguishable from normal todo styling through icon shape/symbol choice (not relying on color)
+- **FR-011**: System MUST display a calendar icon indicator for todos that have a due date matching the current date (due today) and are incomplete
+- **FR-012**: System MUST NOT display any date-related icon indicators for todos with future due dates or no due date
+- **FR-013**: Date-related icons (overdue and due today) MUST be positioned on the left side of the todo title within the TodoCard component
 
 ### Key Entities
 
@@ -95,7 +108,7 @@ Users can easily distinguish between overdue todos, current todos (due today), a
 
 ## Assumptions *(mandatory)*
 
-1. **Current Date Source**: The system uses the client's current date/time for overdue calculations (reasonable default for single-user app; alternatively could use server time for consistency)
+1. **Current Date Source**: The system uses the client's browser local date/time for overdue calculations (aligns with single-user architecture and provides instant updates)
 2. **Time Zone**: Overdue calculations use the user's local time zone (date comparison is date-only, not time-specific)
 3. **Visual Design**: Overdue indicators follow the established Halloween theme UI guidelines (orange/purple color palette) while ensuring sufficient contrast and accessibility
 4. **Persistence**: No changes to data model required - overdue is a calculated/derived property, not a stored field
