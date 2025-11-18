@@ -99,4 +99,132 @@ describe('TodoCard Component', () => {
     
     expect(screen.queryByText(/Due:/)).not.toBeInTheDocument();
   });
+
+  // User Story 1: Visual Identification of Overdue Items
+  describe('Overdue indicators', () => {
+    it('should render clock icon when todo is overdue', () => {
+      const overdueTodo = {
+        ...mockTodo,
+        dueDate: '2025-11-01', // Past date
+        completed: 0
+      };
+      render(<TodoCard todo={overdueTodo} {...mockHandlers} isLoading={false} />);
+      
+      const icon = screen.getByLabelText('Overdue');
+      expect(icon).toBeInTheDocument();
+    });
+
+    it('should NOT render clock icon when todo is completed (even if overdue)', () => {
+      const completedOverdueTodo = {
+        ...mockTodo,
+        dueDate: '2025-11-01', // Past date
+        completed: 1
+      };
+      render(<TodoCard todo={completedOverdueTodo} {...mockHandlers} isLoading={false} />);
+      
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+    });
+
+    it('should NOT render clock icon when todo has no due date', () => {
+      const todoNoDate = { ...mockTodo, dueDate: null, completed: 0 };
+      render(<TodoCard todo={todoNoDate} {...mockHandlers} isLoading={false} />);
+      
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+    });
+
+    it('should NOT render clock icon when due date is today or future', () => {
+      const futureDate = '2025-12-31';
+      const futureTodo = { ...mockTodo, dueDate: futureDate, completed: 0 };
+      render(<TodoCard todo={futureTodo} {...mockHandlers} isLoading={false} />);
+      
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+      
+      const today = new Date().toLocaleDateString('en-CA');
+      const todayTodo = { ...mockTodo, dueDate: today, completed: 0 };
+      const { rerender } = render(<TodoCard todo={todayTodo} {...mockHandlers} isLoading={false} />);
+      
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+    });
+  });
+
+  // User Story 2: Automatic Overdue Status Updates
+  describe('Automatic status updates', () => {
+    it('should recalculate overdue status on component render', () => {
+      const overdueTodo = {
+        ...mockTodo,
+        dueDate: '2025-11-01',
+        completed: 0
+      };
+      
+      const { rerender } = render(<TodoCard todo={overdueTodo} {...mockHandlers} isLoading={false} />);
+      
+      // Icon should be present on first render
+      expect(screen.getByLabelText('Overdue')).toBeInTheDocument();
+      
+      // Icon should still be present on re-render (recalculated)
+      rerender(<TodoCard todo={overdueTodo} {...mockHandlers} isLoading={false} />);
+      expect(screen.getByLabelText('Overdue')).toBeInTheDocument();
+    });
+  });
+
+  // User Story 3: Clear Distinction Between Overdue and Non-Overdue
+  describe('Date state icons', () => {
+    it('should render calendar icon when todo is due today', () => {
+      const today = new Date().toLocaleDateString('en-CA');
+      const todayTodo = {
+        ...mockTodo,
+        dueDate: today,
+        completed: 0
+      };
+      render(<TodoCard todo={todayTodo} {...mockHandlers} isLoading={false} />);
+      
+      const icon = screen.getByLabelText('Due today');
+      expect(icon).toBeInTheDocument();
+    });
+
+    it('should NOT render any icon when due date is in future', () => {
+      const futureTodo = {
+        ...mockTodo,
+        dueDate: '2025-12-31',
+        completed: 0
+      };
+      render(<TodoCard todo={futureTodo} {...mockHandlers} isLoading={false} />);
+      
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Due today')).not.toBeInTheDocument();
+    });
+
+    it('should NOT render any icon when there is no due date', () => {
+      const todoNoDate = {
+        ...mockTodo,
+        dueDate: null,
+        completed: 0
+      };
+      render(<TodoCard todo={todoNoDate} {...mockHandlers} isLoading={false} />);
+      
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Due today')).not.toBeInTheDocument();
+    });
+
+    it('should display distinct icons for overdue vs due-today vs future', () => {
+      // Overdue
+      const overdueTodo = { ...mockTodo, dueDate: '2025-11-01', completed: 0 };
+      const { rerender } = render(<TodoCard todo={overdueTodo} {...mockHandlers} isLoading={false} />);
+      expect(screen.getByLabelText('Overdue')).toBeInTheDocument();
+      expect(screen.queryByLabelText('Due today')).not.toBeInTheDocument();
+      
+      // Due today
+      const today = new Date().toLocaleDateString('en-CA');
+      const todayTodo = { ...mockTodo, dueDate: today, completed: 0 };
+      rerender(<TodoCard todo={todayTodo} {...mockHandlers} isLoading={false} />);
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+      expect(screen.getByLabelText('Due today')).toBeInTheDocument();
+      
+      // Future
+      const futureTodo = { ...mockTodo, dueDate: '2025-12-31', completed: 0 };
+      rerender(<TodoCard todo={futureTodo} {...mockHandlers} isLoading={false} />);
+      expect(screen.queryByLabelText('Overdue')).not.toBeInTheDocument();
+      expect(screen.queryByLabelText('Due today')).not.toBeInTheDocument();
+    });
+  });
 });

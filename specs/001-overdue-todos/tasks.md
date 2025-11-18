@@ -29,7 +29,7 @@ This is a monorepo web application:
 
 ### Test Infrastructure
 
-- [ ] T001 [P] Create date utility module in packages/frontend/src/utils/dateUtils.js with JSDoc function stubs for isOverdue and isDueToday
+- [X] T001 [P] Create date utility module in packages/frontend/src/utils/dateUtils.js with JSDoc function stubs for isOverdue and isDueToday
 
 ---
 
@@ -41,21 +41,21 @@ This is a monorepo web application:
 
 ### Date Utility Tests (Write First - TDD)
 
-- [ ] T002 [P] Write test for isOverdue with past date and incomplete status in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T003 [P] Write test for isOverdue with today's date (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T004 [P] Write test for isOverdue with future date in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T005 [P] Write test for isOverdue with completed status (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T006 [P] Write test for isOverdue with null/undefined dueDate in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T007 [P] Write test for isDueToday with today's date and incomplete status in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T008 [P] Write test for isDueToday with past date (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T009 [P] Write test for isDueToday with future date (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
-- [ ] T010 [P] Write test for isDueToday with completed status (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T002 [P] Write test for isOverdue with past date and incomplete status in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T003 [P] Write test for isOverdue with today's date (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T004 [P] Write test for isOverdue with future date in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T005 [P] Write test for isOverdue with completed status (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T006 [P] Write test for isOverdue with null/undefined dueDate in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T007 [P] Write test for isDueToday with today's date and incomplete status in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T008 [P] Write test for isDueToday with past date (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T009 [P] Write test for isDueToday with future date (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T010 [P] Write test for isDueToday with completed status (should return false) in packages/frontend/src/utils/__tests__/dateUtils.test.js
 
 ### Date Utility Implementation
 
-- [ ] T011 Implement isOverdue function in packages/frontend/src/utils/dateUtils.js using new Date().toLocaleDateString('en-CA') for date comparison
-- [ ] T012 Implement isDueToday function in packages/frontend/src/utils/dateUtils.js using new Date().toLocaleDateString('en-CA') for date comparison
-- [ ] T013 Run date utility tests to verify all tests pass with npm test -- dateUtils.test.js
+- [X] T011 Implement isOverdue function in packages/frontend/src/utils/dateUtils.js using new Date().toLocaleDateString('en-CA') for date comparison
+- [X] T012 Implement isDueToday function in packages/frontend/src/utils/dateUtils.js using new Date().toLocaleDateString('en-CA') for date comparison
+- [X] T013 Run date utility tests to verify all tests pass with npm test -- dateUtils.test.js
 
 **Checkpoint**: Foundation ready - all date utilities working and tested. User story implementation can now begin in parallel.
 
@@ -71,19 +71,19 @@ This is a monorepo web application:
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T014 [P] [US1] Write test for TodoCard rendering clock icon when todo is overdue in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T015 [P] [US1] Write test for TodoCard NOT rendering clock icon when todo is completed (even if overdue) in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T016 [P] [US1] Write test for TodoCard NOT rendering clock icon when todo has no due date in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T017 [P] [US1] Write test for TodoCard NOT rendering clock icon when due date is today or future in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T014 [P] [US1] Write test for TodoCard rendering clock icon when todo is overdue in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T015 [P] [US1] Write test for TodoCard NOT rendering clock icon when todo is completed (even if overdue) in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T016 [P] [US1] Write test for TodoCard NOT rendering clock icon when todo has no due date in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T017 [P] [US1] Write test for TodoCard NOT rendering clock icon when due date is today or future in packages/frontend/src/components/__tests__/TodoCard.test.js
 
 ### Implementation for User Story 1
 
-- [ ] T018 [US1] Import isOverdue and isDueToday from dateUtils into packages/frontend/src/components/TodoCard.js
-- [ ] T019 [US1] Create renderDateIcon helper function in TodoCard.js that returns clock SVG icon when isOverdue returns true
-- [ ] T020 [US1] Add inline SVG clock/hourglass icon component in TodoCard.js with 20px size and aria-label "Overdue"
-- [ ] T021 [US1] Insert renderDateIcon() call in TodoCard JSX between checkbox and todo-content div in packages/frontend/src/components/TodoCard.js
-- [ ] T022 [US1] Run TodoCard tests to verify overdue icon rendering with npm test -- TodoCard.test.js
-- [ ] T023 [US1] Manual test: Create todo with past due date via UI and verify clock icon appears
+- [X] T018 [US1] Import isOverdue and isDueToday from dateUtils into packages/frontend/src/components/TodoCard.js
+- [X] T019 [US1] Create renderDateIcon helper function in TodoCard.js that returns clock SVG icon when isOverdue returns true
+- [X] T020 [US1] Add inline SVG clock/hourglass icon component in TodoCard.js with 20px size and aria-label "Overdue"
+- [X] T021 [US1] Insert renderDateIcon() call in TodoCard JSX between checkbox and todo-content div in packages/frontend/src/components/TodoCard.js
+- [X] T022 [US1] Run TodoCard tests to verify overdue icon rendering with npm test -- TodoCard.test.js
+- [X] T023 [US1] Manual test: Create todo with past due date via UI and verify clock icon appears
 
 **Checkpoint**: At this point, User Story 1 should be fully functional - overdue items display with clock icon indicators
 
@@ -97,14 +97,14 @@ This is a monorepo web application:
 
 ### Tests for User Story 2
 
-- [ ] T024 [P] [US2] Write test verifying overdue status recalculates on component render in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T025 [P] [US2] Write test that mocks current date and verifies correct overdue calculation in packages/frontend/src/utils/__tests__/dateUtils.test.js
+- [X] T024 [P] [US2] Write test verifying overdue status recalculates on component render in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T025 [P] [US2] Write test that mocks current date and verifies correct overdue calculation in packages/frontend/src/utils/__tests__/dateUtils.test.js
 
 ### Implementation for User Story 2
 
-- [ ] T026 [US2] Verify dateUtils.js uses current date on each call (no caching) for real-time calculation in packages/frontend/src/utils/dateUtils.js
-- [ ] T027 [US2] Run integration test: Change system date (or mock) and verify overdue status updates on next render
-- [ ] T028 [US2] Manual test: Create todo due "today", wait until tomorrow (or mock date), verify it shows as overdue
+- [X] T026 [US2] Verify dateUtils.js uses current date on each call (no caching) for real-time calculation in packages/frontend/src/utils/dateUtils.js
+- [X] T027 [US2] Run integration test: Change system date (or mock) and verify overdue status updates on next render
+- [X] T028 [US2] Manual test: Create todo due "today", wait until tomorrow (or mock date), verify it shows as overdue
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work - overdue status is accurate and updates automatically
 
@@ -118,19 +118,19 @@ This is a monorepo web application:
 
 ### Tests for User Story 3
 
-- [ ] T029 [P] [US3] Write test for TodoCard rendering calendar icon when todo is due today in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T030 [P] [US3] Write test for TodoCard NOT rendering any icon when due date is in future in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T031 [P] [US3] Write test for TodoCard NOT rendering any icon when there is no due date in packages/frontend/src/components/__tests__/TodoCard.test.js
-- [ ] T032 [P] [US3] Write test verifying distinct icons for overdue vs due-today vs future in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T029 [P] [US3] Write test for TodoCard rendering calendar icon when todo is due today in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T030 [P] [US3] Write test for TodoCard NOT rendering any icon when due date is in future in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T031 [P] [US3] Write test for TodoCard NOT rendering any icon when there is no due date in packages/frontend/src/components/__tests__/TodoCard.test.js
+- [X] T032 [P] [US3] Write test verifying distinct icons for overdue vs due-today vs future in packages/frontend/src/components/__tests__/TodoCard.test.js
 
 ### Implementation for User Story 3
 
-- [ ] T033 [US3] Add inline SVG calendar icon component in TodoCard.js with 20px size and aria-label "Due today"
-- [ ] T034 [US3] Update renderDateIcon helper in TodoCard.js to return calendar icon when isDueToday returns true
-- [ ] T035 [US3] Update renderDateIcon helper in TodoCard.js to return null when todo has future date or no date
-- [ ] T036 [US3] Add CSS styling for icon spacing in packages/frontend/src/App.css or theme.css using 8px grid (sm padding)
-- [ ] T037 [US3] Run TodoCard tests to verify all three icon states (overdue, due today, none) with npm test -- TodoCard.test.js
-- [ ] T038 [US3] Manual test: Create todos with past, today, future, and null due dates; verify correct icons appear
+- [X] T033 [US3] Add inline SVG calendar icon component in TodoCard.js with 20px size and aria-label "Due today"
+- [X] T034 [US3] Update renderDateIcon helper in TodoCard.js to return calendar icon when isDueToday returns true
+- [X] T035 [US3] Update renderDateIcon helper in TodoCard.js to return null when todo has future date or no date
+- [X] T036 [US3] Add CSS styling for icon spacing in packages/frontend/src/App.css or theme.css using 8px grid (sm padding)
+- [X] T037 [US3] Run TodoCard tests to verify all three icon states (overdue, due today, none) with npm test -- TodoCard.test.js
+- [X] T038 [US3] Manual test: Create todos with past, today, future, and null due dates; verify correct icons appear
 
 **Checkpoint**: All user stories should now be independently functional - complete visual distinction between all date states
 
@@ -140,17 +140,17 @@ This is a monorepo web application:
 
 **Purpose**: Improvements that affect multiple user stories, accessibility, and final validation
 
-- [ ] T039 [P] Verify icon accessibility: Ensure aria-labels are present and descriptive in packages/frontend/src/components/TodoCard.js
-- [ ] T040 [P] Verify keyboard navigation works with icons present in packages/frontend/src/components/TodoCard.js
-- [ ] T041 [P] Review icon sizing consistency with 8px grid system in packages/frontend/src/styles/theme.css
-- [ ] T042 Test edge case: Very old overdue dates (months/years past) render correctly
-- [ ] T043 Test edge case: Due date changes from past to future remove overdue icon immediately
-- [ ] T044 Test edge case: Due date changes from future to past add overdue icon immediately
-- [ ] T045 Test edge case: Marking overdue todo as complete removes icon immediately
-- [ ] T046 Run full test suite with coverage report and verify 80%+ coverage with npm test -- --coverage
-- [ ] T047 Follow quickstart.md validation steps to verify feature works end-to-end
-- [ ] T048 [P] Update comments and JSDoc in dateUtils.js for clarity
-- [ ] T049 Code review: Verify DRY, KISS, and SOLID principles are followed
+- [X] T039 [P] Verify icon accessibility: Ensure aria-labels are present and descriptive in packages/frontend/src/components/TodoCard.js
+- [X] T040 [P] Verify keyboard navigation works with icons present in packages/frontend/src/components/TodoCard.js
+- [X] T041 [P] Review icon sizing consistency with 8px grid system in packages/frontend/src/styles/theme.css
+- [X] T042 Test edge case: Very old overdue dates (months/years past) render correctly
+- [X] T043 Test edge case: Due date changes from past to future remove overdue icon immediately
+- [X] T044 Test edge case: Due date changes from future to past add overdue icon immediately
+- [X] T045 Test edge case: Marking overdue todo as complete removes icon immediately
+- [X] T046 Run full test suite with coverage report and verify 80%+ coverage with npm test -- --coverage
+- [X] T047 Follow quickstart.md validation steps to verify feature works end-to-end
+- [X] T048 [P] Update comments and JSDoc in dateUtils.js for clarity
+- [X] T049 Code review: Verify DRY, KISS, and SOLID principles are followed
 
 ---
 

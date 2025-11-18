@@ -347,6 +347,22 @@ p {
   opacity: 0.6;
 }
 
+/* Date status icons */
+.date-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+.overdue-icon {
+  color: var(--primary-color);
+}
+
+.due-today-icon {
+  color: var(--secondary-color);
+}
+
 .todo-content {
   flex: 1;
   min-width: 0;
